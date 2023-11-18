@@ -1,12 +1,47 @@
 import SeedCard from '@/components/SeedCard';
-import { Seed } from '../types';
+import { Seed, SeedStatus } from '../types';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Flex, Text } from '@chakra-ui/react';
 import Menu from '@/components/Menu';
 import { theme } from '@/styles/theme';
 
+const seedsMockup: Seed[] = [
+    {
+        name: 'Seed C1',
+        pressure: 1,
+        status: SeedStatus.WORKING,
+        airPerArea: 10,
+        noise: 12,
+        waterFlow: 32,
+    },
+    {
+        name: 'Seed C2',
+        pressure: 1,
+        status: SeedStatus.ALERT,
+        airPerArea: 10,
+        noise: 12,
+        waterFlow: 32,
+    }
+    , {
+        name: 'Seed C3',
+        pressure: 1,
+        status: SeedStatus.DANGER,
+        airPerArea: 10,
+        noise: 12,
+        waterFlow: 32,
+    }
+    , {
+        name: 'Seed C4',
+        pressure: 1,
+        status: SeedStatus.WORKING,
+        airPerArea: 10,
+        noise: 12,
+        waterFlow: 32,
+    }
+]
+
 const Dashboard: React.FC = () => {
-    const [seeds, setSeeds] = useState<Seed[]>([])
+    const [seeds, setSeeds] = useState<Seed[]>(seedsMockup)
 
     useEffect(() => {
         const eventSource = new EventSource("/api/seeds");

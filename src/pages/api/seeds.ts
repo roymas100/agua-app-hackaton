@@ -8,7 +8,7 @@ type Data = {
 
 const seeds: Seed[] = [
     {
-        name: 'Seed C3',
+        name: 'Seed C1',
         pressure: 1,
         status: SeedStatus.WORKING,
         airPerArea: 10,
@@ -16,7 +16,7 @@ const seeds: Seed[] = [
         waterFlow: 32,
     },
     {
-        name: 'Seed C3',
+        name: 'Seed C2',
         pressure: 1,
         status: SeedStatus.ALERT,
         airPerArea: 10,
@@ -32,7 +32,7 @@ const seeds: Seed[] = [
         waterFlow: 32,
     }
     , {
-        name: 'Seed C3',
+        name: 'Seed C4',
         pressure: 1,
         status: SeedStatus.WORKING,
         airPerArea: 10,
@@ -55,6 +55,12 @@ export default function handler(
     res.setHeader('Cache-Control', 'no-cache')
     res.setHeader('Connection', 'keep-alive')
     res.setHeader('Content-Encoding', 'none')
+
+    const data = {
+        seeds
+    }
+
+    res.write(`data: ${JSON.stringify(data)}\n\n`)
 
     const intervalId = setInterval(() => {
         const newSeeds = seeds.map(seed => {
